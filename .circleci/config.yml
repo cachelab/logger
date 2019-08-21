@@ -1,17 +1,22 @@
 version: 2.1
 
+executors:
+    elasticsearch:
+        docker:
+            - image: docker.elastic.co/elasticsearch/elasticsearch:7.3.0
+              environment:
+                - discovery.type: single-node
+    logger:
+        docker:
+          - image: golang:1.12.9
+            environment:
+              - ELASTICSEARCH_URL: http://127.0.0.1:9200
+              - GO111MODULE: "on"
+              - RUN_ONCE: true
 jobs:
   build:
     working_directory: /go/src/logger
-    docker:
-      - image: golang:1.12.9
-        environment:
-          - ELASTICSEARCH_URL: http://127.0.0.1:9200
-          - GO111MODULE: "on"
-          - RUN_ONCE: true
-      - image: docker.elastic.co/elasticsearch/elasticsearch:7.3.0
-        environment:
-          - discovery.type: single-node
+    executor: logger
     steps:
       - checkout
       - run:
