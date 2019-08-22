@@ -142,7 +142,7 @@ func (svc *Service) Init() error {
 		return nil
 	}
 
-	return http.ListenAndServe(":3000", nil)
+	return http.ListenAndServe(":3000", mux)
 }
 
 // Private
