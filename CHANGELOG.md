@@ -1,4 +1,4 @@
-## 1.1.0 (August 21 2019)
+## 1.1.0 (November 11 2019)
 
 * Updated Go docker version.
 
