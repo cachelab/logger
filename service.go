@@ -17,9 +17,9 @@ import (
 const DefaultFlushInterval = 15 * time.Second
 const DefaultWorkers = 1
 const DefaultBulkActions = 1000
+const DefaultMaxRetries = 5
 const DefaultElasticsearchURL = "http://elasticsearch:9200"
 const DefaultRunOnce = false
-const DefaultMaxRetries = 5
 
 type Service struct {
 	processor *elastic.BulkProcessor
@@ -30,10 +30,6 @@ type Doc struct {
 	Level   string                  `json:"level"`
 	Date    string                  `json:"date"`
 	Data    *map[string]interface{} `json:"data"`
-}
-
-type Retrier struct {
-	backoff elastic.Backoff
 }
 
 func (svc *Service) Init() error {

@@ -1,7 +1,7 @@
 # Logger
 
 Simple lightweight API that accepts a POST request with a JSON payload that is
-written to the buffer and flushed at configurable intervals into Elasticsearch.
+written to a buffer and flushed at configurable intervals into Elasticsearch.
 Whichever setting (time, buffer size) that comes first for the processor
 configuration will execute the flush. You can start the entire service with
 `docker-compose up`.
