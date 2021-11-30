@@ -1,3 +1,8 @@
+## 2.0.0
+
+* Updated Go for docker builds and converted to multi stage build for smaller
+  container size.
+
 ## 1.1.1 (November 19 2019)
 
 * Updated Go version for CircleCi to match container.

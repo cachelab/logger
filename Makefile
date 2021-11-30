@@ -10,11 +10,12 @@ run: build
 	docker run -p 3000:3000 ${MAINTAINER}/${NAME}
 
 build: vet
-	@echo Building Binary and Container
-	@go build -o ${NAME}
+	@echo Building Container
 	@docker build -t ${MAINTAINER}/${NAME} .
 
 vet:
+	@echo Tidy Code
+	@go mod tidy
 	@echo Formatting Code
 	@go fmt ./...
 	@echo Vetting Code

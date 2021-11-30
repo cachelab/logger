@@ -1,4 +1,5 @@
-//+build !test
+//go:build !test
+// +build !test
 
 package main
 
@@ -7,7 +8,7 @@ import (
 	"os"
 )
 
-const version = "1.1.1"
+const version = "2.0.0"
 
 func main() {
 	var svc Service
