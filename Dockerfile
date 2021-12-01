@@ -1,8 +1,6 @@
 # Stage 1
 FROM golang:1.17.3-alpine as builder
 
-MAINTAINER Cache Lab <hello@cachelab.co>
-
 ADD ./ /go/src/svc
 
 WORKDIR /go/src/svc
