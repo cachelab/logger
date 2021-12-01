@@ -31,6 +31,8 @@ curl -XPOST http://127.0.0.1:3000/your-api/log -d '{"message": "Error in line 12
 
 ## Contributing
 
+* `make` - defaults to make build
+* `make up` - runs elasticsearch and kibana in the foreground with docker compose
 * `make run` - runs the api in a docker container
 * `make build` - builds your logger docker container
 * `make vet` - go fmt and vet code
