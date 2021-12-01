@@ -4,10 +4,15 @@ VERSION := $(shell grep "const version =" main.go | cut -d\" -f2)
 
 .PHONY: *
 
-default: run
+default: build
+
+up:
+	@echo Running Compose
+	docker-compose up
 
 run: build
-	docker run --network host ${MAINTAINER}/${NAME}
+	@echo Running Container
+	docker run -e "ELASTICSEARCH_URL=http://elasticsearch:9200" --network logger_logger -p 3000:3000 -it ${MAINTAINER}/${NAME}
 
 build: vet
 	@echo Building Container
@@ -22,8 +27,11 @@ vet:
 	@go vet .
 
 push: build
+	@echo Tagging Container
 	docker tag ${MAINTAINER}/${NAME}:latest ${MAINTAINER}/${NAME}:${VERSION}
+	@echo Pushing Container
 	docker push ${MAINTAINER}/${NAME}:latest
+	@echo Pushing Container
 	docker push ${MAINTAINER}/${NAME}:${VERSION}
 
 test:
@@ -34,5 +42,7 @@ test:
 	@open .coverage/cov.html
 
 tag:
+	@echo Creating Git Tag
 	git tag v${VERSION}
+	@echo Pushing Git Tag
 	git push origin --tags

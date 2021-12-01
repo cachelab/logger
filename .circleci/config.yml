@@ -17,7 +17,7 @@ jobs:
       - run:
           name: Wait For Elasticsearch
           command: |
-            sleep 15 && wget --waitretry=10 --retry-connrefused -v http://127.0.0.1:9200/
+            sleep 15 && wget --waitretry=10 --retry-connrefused http://127.0.0.1:9200/
       - run:
           name: Create Directory
           command: |
