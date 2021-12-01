@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-const version = "2.0.0"
+const version = "1.2.0"
 
 func main() {
 	var svc Service

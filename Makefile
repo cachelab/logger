@@ -7,7 +7,7 @@ VERSION := $(shell grep "const version =" main.go | cut -d\" -f2)
 default: run
 
 run: build
-	docker run -p 3000:3000 ${MAINTAINER}/${NAME}
+	docker run --network host ${MAINTAINER}/${NAME}
 
 build: vet
 	@echo Building Container
@@ -29,8 +29,7 @@ push: build
 test:
 	@echo Running Unit Tests
 	@mkdir -p .coverage
-	@GOOS=darwin \
-		go test -tags test -coverprofile=/tmp/cov.out ./...
+	@GOOS=darwin go test -tags test -coverprofile=/tmp/cov.out ./...
 	@go tool cover -html=/tmp/cov.out -o=.coverage/cov.html
 	@open .coverage/cov.html
 
