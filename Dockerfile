@@ -1,9 +1,15 @@
-FROM golang:1.13.4-alpine
+# Stage 1
+FROM golang:1.17.3-alpine as builder
 
-MAINTAINER Cache Lab <hello@cachelab.co>
+ADD ./ /go/src/svc
 
-COPY logger /bin/logger
+WORKDIR /go/src/svc
 
-USER nobody
+RUN go build -o svc
 
-ENTRYPOINT ["/bin/logger"]
+# Stage 2
+FROM alpine:3.15.0
+
+COPY --from=builder /go/src/svc /usr/bin/
+
+ENTRYPOINT ["/usr/bin/svc"]

@@ -18,7 +18,7 @@ const DefaultFlushInterval = 15 * time.Second
 const DefaultWorkers = 1
 const DefaultBulkActions = 1000
 const DefaultMaxRetries = 5
-const DefaultElasticsearchURL = "http://elasticsearch:9200"
+const DefaultElasticsearchURL = "http://127.0.0.1:9200"
 const DefaultRunOnce = false
 
 type Service struct {
