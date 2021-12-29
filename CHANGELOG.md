@@ -1,4 +1,4 @@
-## 1.2.0
+## 1.2.0 (December 29 2021)
 
 * Updated Go and packages.
 * Converted to multi stage build for smaller container size.
